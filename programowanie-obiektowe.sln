@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32002.261
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab1-2", "Lab1-2\Lab1-2.csproj", "{DB252F1C-B697-41FA-918B-3542C07E2FBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab1-2", "Lab1-2\Lab1-2.csproj", "{DB252F1C-B697-41FA-918B-3542C07E2FBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "wyk-cw", "wyk-cw", "{FE8CEA59-8D74-4A25-8B87-B62341C94105}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Emerytura", "Emerytura", "{28AA1390-9D95-4297-B65F-E41FF1CDC832}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerytura1", "Emerytura1\Emerytura1.csproj", "{8565FB85-F97B-4A13-BB96-C2CD882307F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerytura1", "Emerytura1\Emerytura1.csproj", "{8565FB85-F97B-4A13-BB96-C2CD882307F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerytura2", "Emerytura2\Emerytura2.csproj", "{173DB381-677E-421E-98A4-3628B044F31A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerytura2", "Emerytura2\Emerytura2.csproj", "{173DB381-677E-421E-98A4-3628B044F31A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerytura3", "Emerytura3\Emerytura3.csproj", "{F61C470E-9A2C-4A8B-A8ED-2BF8B669C3EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerytura3", "Emerytura3\Emerytura3.csproj", "{F61C470E-9A2C-4A8B-A8ED-2BF8B669C3EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3", "Lab3\Lab3.csproj", "{02434B63-5699-4BBF-A82A-5A0E3E93DF95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{F61C470E-9A2C-4A8B-A8ED-2BF8B669C3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F61C470E-9A2C-4A8B-A8ED-2BF8B669C3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F61C470E-9A2C-4A8B-A8ED-2BF8B669C3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02434B63-5699-4BBF-A82A-5A0E3E93DF95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02434B63-5699-4BBF-A82A-5A0E3E93DF95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02434B63-5699-4BBF-A82A-5A0E3E93DF95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02434B63-5699-4BBF-A82A-5A0E3E93DF95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
