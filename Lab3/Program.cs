@@ -59,7 +59,7 @@ namespace Lab3
             }
         }
 
-        public abstract class Scooter : Vehicle
+        public class Scooter : Vehicle
         {
             public bool isLight { get; set; }
             public bool isBrake { get; set; }
@@ -75,33 +75,46 @@ namespace Lab3
             }
             public override string ToString()
             {
-                return $"Vehicle{{ Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage} }}";
+                return $"Scooter{{ Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage} }}";
             }
         }
 
-        public abstract class ElectricScooter : Scooter
+        public class ElectricScooter : Scooter
         {
-            public int BatteryLevel { get; set; }
-            public int MaxRange { get; init; }
+            private int _currentBatteryLevel { get; set; }
+            public int maxRange { get; set; }
+
+            public int MaxRange()
+            {
+                maxRange = (MaxSpeed / 10) * ((int)Weight / 10);
+                return maxRange;
+            }
 
             public override decimal Drive(int distance)
             {
-                if (isLight && isBrake)
+                if (isLight && isBrake && _currentBatteryLevel > 0)
                 {
                     _mileage += distance;
+                    /*TODO spadanie poziomu baterii, to nie dzial xd -> _currentBatteryLevel =  distance/100;*/
+
                     return (decimal)(distance / (double)MaxSpeed);
                 }
                 return -1;
             }
-            
+
+            public string BetteryLevel()
+            {
+                return $"Your battery level is {_currentBatteryLevel}%";
+            }
+
             public void RechargeBattery()
             {
-                BatteryLevel = 100;
+                _currentBatteryLevel = 100;
             }
 
             public override string ToString()
             {
-                return $"Vehicle{{ Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage} }}";
+                return $"ElectricScooter{{ Weight: {Weight}, MaxSpeed: {MaxSpeed}, Mileage: {_mileage}, MaxRange: {MaxRange()}}}";
             }
         }
 
@@ -134,6 +147,65 @@ namespace Lab3
             }
         }*/
 
+        interface IFlyable
+        {
+            bool canFly();
+        }
+
+        interface ISwimmingable
+        {
+            bool canSwim();
+        }
+
+        public class Duck : IFlyable, ISwimmingable
+        {
+            public bool canFly()
+            {
+                return true;
+            }
+
+            public bool canSwim()
+            {
+                return true;
+            }
+
+            public override string ToString()
+            {
+                return "Duck, kwa kwa";
+            }
+        }
+
+        public class Wasp : IFlyable
+        {
+            public bool canFly()
+            {
+                return true;
+            }
+
+            public override string ToString()
+            {
+                return "Wasp, bzz bzz";
+            }
+        }
+
+        public class HydroPlane : IFlyable, ISwimmingable
+        {
+            public bool canFly()
+            {
+                return true;
+            }
+
+            public bool canSwim()
+            {
+                return true;
+            }
+
+            public override string ToString()
+            {
+                return "HydroPlane, wzium wzium";
+            }
+        }
+
         interface IAggregate
         {
             IIterator createIterator();
@@ -144,13 +216,19 @@ namespace Lab3
             int GetFirst();
             bool HasNext();
             int GetNext();
+            int GetNextReverse();
+            int EvenOdd();
+            /*int DividableCompletly(int k);*/
         }
 
         class IntAggregate : IAggregate
         {
-            internal int _a = 4;
-            internal int _b = 6;
-            internal int _c = 2;
+            internal int _a = 1;
+            internal int _b = 2;
+            internal int _c = 3;
+            internal int _d = 4;
+            internal int _e = 5;
+            internal int _f = 6;
 
             public IIterator createIterator()
             {
@@ -175,23 +253,75 @@ namespace Lab3
 
             public int GetNext()
             {
-                if(count == 3)
+                if (count == 6)
                 {
-                    return _aggregate._c;
+                    return _aggregate._f;
                 }
-                switch(++count)
+                switch (++count)
                 {
                     case 1: return _aggregate._a;
                     case 2: return _aggregate._b;
                     case 3: return _aggregate._c;
+                    case 4: return _aggregate._d;
+                    case 5: return _aggregate._e;
+                    case 6: return _aggregate._f;
                     default: throw new Exception();
                 }
             }
 
             public bool HasNext()
             {
-                return count < 3;
+                return count < 6;
             }
+
+            public int GetNextReverse()
+            {
+                if (count == 6)
+                {
+                    return _aggregate._a;
+                }
+                switch (++count)
+                {
+                    case 1: return _aggregate._f;
+                    case 2: return _aggregate._e;
+                    case 3: return _aggregate._d;
+                    case 4: return _aggregate._c;
+                    case 5: return _aggregate._b;
+                    case 6: return _aggregate._a;
+                    default: throw new Exception();
+                }
+            }
+
+            public int EvenOdd()
+            {
+                if (count == 6)
+                {
+                    return _aggregate._e;
+                }
+                switch (++count)
+                {
+                    case 1: return _aggregate._b;
+                    case 2: return _aggregate._d;
+                    case 3: return _aggregate._f;
+                    case 4: return _aggregate._a;
+                    case 5: return _aggregate._c;
+                    case 6: return _aggregate._e;
+                    default: throw new Exception();
+                }
+            }
+
+            /*public int DividableCompletly(int k)
+            {
+                switch (++count)
+                {
+                    case (_aggregate._a % k) == 0 return _aggregate._a;
+                if (_aggregate._b % k == 0) return _aggregate._b;
+                if (_aggregate._c % k == 0) return _aggregate._c;
+                if (_aggregate._d % k == 0) return _aggregate._d;
+                if (_aggregate._e % k == 0) return _aggregate._e;
+                if (_aggregate._f % k == 0) return _aggregate._f;
+                    default: throw new Exception();
+            }*/
         }
 
         static void Main(string[] args)
@@ -217,9 +347,9 @@ namespace Lab3
                 }
             }
 
-            IElectric[] electrics = new IElectric[3];
+            /*IElectric[] electrics = new IElectric[3];
             electrics[0] = new Scooter();
-            electrics[1] = new Cooker();
+            electrics[1] = new Cooker();*/
 
 
             Console.WriteLine();
@@ -241,7 +371,7 @@ namespace Lab3
             Console.WriteLine();
             Console.WriteLine("List iteration");
             List<string>.Enumerator enumerator = names.GetEnumerator();
-            while(enumerator.MoveNext())
+            while (enumerator.MoveNext())
             {
                 Console.WriteLine(enumerator.Current);
             }
@@ -249,6 +379,60 @@ namespace Lab3
             foreach(var name in names) 
             {
                 Console.WriteLine(name);
+            }*/
+
+            //CW1
+            ElectricScooter test = new ElectricScooter() { Weight = 50, MaxSpeed = 60, isBrake = true, isLight = true };
+            Console.WriteLine(test);
+            Console.WriteLine(test.BetteryLevel());
+            test.RechargeBattery();
+            Console.WriteLine(test.BetteryLevel());
+            Console.WriteLine(test.Drive(5));
+            Console.WriteLine(test.BetteryLevel());
+            Console.WriteLine();
+
+            //CW2
+            IFlyable[] flyable = new IFlyable[3];
+            flyable[0] = new Duck();
+            flyable[1] = new Wasp();
+            flyable[2] = new HydroPlane();
+            int countAll = 0;
+
+            foreach (var f in flyable)
+            {
+                if (f is IFlyable && f is ISwimmingable)
+                {
+                    countAll++;
+                    Console.WriteLine(f);
+                }
+            }
+            if (countAll == 1 || countAll == 0)
+                Console.WriteLine($"There is {countAll} elements who can fly and swim");
+            else
+                Console.WriteLine($"There are {countAll} elements who can fly and swim");
+            Console.WriteLine();
+
+            //CW3
+            Console.WriteLine("Reverse int iteration");
+            IAggregate aggregate1 = new IntAggregate();
+            IIterator iterator1 = aggregate1.createIterator();
+            while (iterator1.HasNext())
+            {
+                Console.WriteLine(iterator1.GetNextReverse());
+            }
+            Console.WriteLine("Even first int iteration");
+            IAggregate aggregate2 = new IntAggregate();
+            IIterator iterator2 = aggregate2.createIterator();
+            while (iterator2.HasNext())
+            {
+                Console.WriteLine(iterator2.EvenOdd());
+            }
+            /*Console.WriteLine("Int % k == 0 iteration");
+            IAggregate aggregate3 = new IntAggregate();
+            IIterator iterator3 = aggregate3.createIterator();
+            while (iterator2.HasNext())
+            {
+                Console.WriteLine(iterator3.DividableCompletly(2));
             }*/
         }
     }
