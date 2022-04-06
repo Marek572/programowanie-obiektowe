@@ -18,6 +18,22 @@ namespace Lab3
             Console.WriteLine("this is laptop1: " + laptop1);
             Console.WriteLine("this is laptop2: " + laptop2);
             Console.WriteLine("this is tuple: " + tuple);
+
+            Console.WriteLine();
+
+            Console.WriteLine(Exercise2.getTuple1());
+            int[] arr = { 2, 3, 4, 6 };
+
+            Console.WriteLine(Exercise2.GetTuple2<int>(arr));
+
+            var first = arr[0];
+            var last = arr[arr.Length - 1];
+
+            int[] result = { first, last };
+
+            string test = string.Join(", ", result);
+
+            Console.WriteLine("[{0}]", test);
         }
     }
 
@@ -96,9 +112,25 @@ namespace Lab3
         //tuple.firstAndLast    ==> {2, 6}
         //tuple.isSame          ==> false
 
+        
+
         public static ValueTuple<T[], bool> GetTuple2<T>(T[] arr)
         {
-            throw new NotImplementedException();
+            static U[] firstAndLast<U>(U[] arr)
+            {
+                var first = arr[0];
+                var last = arr[arr.Length - 1];
+
+                U[] result = { first, last };
+
+                return result;
+            }
+           
+            var x = firstAndLast<T>(arr);
+
+            (T[], bool) finalResult = (x, true);
+
+            return finalResult;
         }
     }
 
