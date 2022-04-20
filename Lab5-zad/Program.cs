@@ -70,6 +70,7 @@ namespace Lab5_zad
                         0 => _team.Manager,
                         1 => _team.MemberA,
                         2 => _team.MemberB,
+                        _ => default
                     };
                 }
             }

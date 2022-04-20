@@ -42,7 +42,6 @@ namespace Parametry_trojkata
         static void Main(string[] args)
         {
             string readSides = Console.ReadLine();
-            //TODO: zaokraglenie do 2 miejsc po przecinku
             double[] sides = Array.ConvertAll<string, double>(readSides.Split("; "), double.Parse);
             bool isTriangle;
 
