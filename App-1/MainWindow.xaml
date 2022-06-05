@@ -18,6 +18,8 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <TextBox
         x:Name="ResultValue"
@@ -45,7 +47,7 @@
             Grid.Column="0"
             Grid.Row="2"
             Grid.ColumnSpan="3"
-            Margin="10,5,10,10"
+            Margin="10,5,10,5"
             FontSize="36"
             Click="CalcButton_Click">
             <Button.Content>
@@ -77,5 +79,23 @@
             SelectionChanged="ComboBox_SelectionChanged"
             Margin="5,5,10,5"
             FontSize="60"/>
+        <Button
+            Grid.Column="0"
+            Grid.Row="3"
+            Grid.ColumnSpan="3"
+            Margin="10, 5, 10, 5"
+            FontSize="36" Click="Button_Click"
+            >
+            Wczytaj z pliku
+        </Button>
+        <Button
+            Grid.Column="0"
+            Grid.Row="4"
+            Grid.ColumnSpan="3"
+            Margin="10, 5, 10, 5"
+            FontSize="36" Click="Button_Click_1"
+            >
+            Zapisz do pliku
+        </Button>
     </Grid>
 </Window>
